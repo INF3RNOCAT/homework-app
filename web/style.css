@@ -1,0 +1,447 @@
+/* Font Imports */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+
+/* CSS Variables */
+
+:root {
+    --background-color: #ffffff;
+    --main-color: dodgerblue;
+    --main-color-hover: rgb(20, 97, 173);
+    --text-color: white;
+
+    --title-size: 16px;
+    --content-size: 14px;
+    --details-size: 12px;
+
+    --icon-size: 25px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 50px 0 50px 0;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--main-color);        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--text-color);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--main-color);  /* creates padding around scroll thumb */
+}
+
+/* Keyframes */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes shake {
+    0% { right: 5px; }
+    25% { right: 10px; }
+    50% { right: 5px; }
+    75% { right: 0px; }
+    100% { right: 5px; }
+}
+
+@keyframes slide {
+    from { margin-top: 20px; }
+    to {margin-top: 0;}
+}
+
+/* Important Classes */
+
+.button-svg {
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.button-svg img {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: block;
+    margin: 0;
+    -webkit-user-drag: none;
+    transition: transform 0.3s;
+}
+
+/* Navigation */
+
+nav {
+    width: 100%;
+    background-color: var(--main-color);
+    top: 0;
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    padding: 3px;
+    -webkit-app-region: drag;
+}
+
+nav p {
+    color: var(--text-color);
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: var(--title-size);
+    user-select: none;
+    margin: 0 0 0 5px;
+}
+
+nav button {
+    margin: 0 0px 0 0;
+    -webkit-app-region: no-drag;
+}
+
+nav button:hover {
+    background-color: #cdcdcd;
+}
+
+nav button:active {
+    background-color: #b3b3b3;
+}
+
+/* New Item UI */
+
+#newItemButton #arrow {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    top: -70px;
+    left: -45px;
+    pointer-events: none;
+    animation: fadeIn 0.3s forwards linear;
+}
+
+#newItemButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    background-color: var(--main-color);
+    transition: box-shadow 0.3s;
+}
+
+#newItemButton:hover {
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+#newItemButton:active {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.9);
+}
+
+#newItem {
+    position: fixed;
+    width: fit-content;
+    background-color: var(--main-color);
+    bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
+    right: 5px;
+    padding: 5px;
+    z-index: 10;
+    transform: translateX(110%);
+    transition: transform 0.4s;
+}
+
+.text {
+    outline: none;
+    padding: 3px;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 3px;
+    font-family: "Open Sans";
+    font-size: var(--content-size);
+    border: 1px solid white;
+    transition: border 0.3s;
+}
+
+.text:focus {
+    border: 1px solid black !important;
+}
+
+#newItem input[type=text] {
+    width: 100%;
+}
+
+#newItem input[type=submit] {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: "Open Sans";
+    font-size: var(--content-size);
+    border-radius: 3px;
+    background-color: white;
+    transition: background-color 0.3s;
+}
+
+#newItem input[type=submit]:hover {
+    background-color: #cdcdcd;
+}
+
+#newItem input[type=submit]:active {
+    background-color: #b3b3b3;
+}
+
+
+#newItem input[type=date], input[type=time] {
+    border: none;
+    outline: none;
+    font-family: "Open Sans";
+    font-size: var(--content-size);
+    border-radius: 3px;
+}
+
+#newItem input[type=color] {
+    display: none;
+}
+
+#newItem .color {
+    width: 21.2px;
+    height: 21.2px;
+    display: inline-block;
+    vertical-align: top;
+    border: 2px solid var(--background-color);
+    border-radius: 4px;
+    background-color: var(--main-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.color-grid {
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    transform: translate(-40%, -85px);
+    margin: 0;
+    padding: 3px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    animation: slide 0.3s forwards;
+}
+
+.color-grid div {
+    margin: 1.5px;
+    background-color: attr(color);
+    transition: box-shadow 0.3s;
+}
+
+.color-grid div:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+#newItem textarea {
+    display: block;
+    width: 100%;
+    height: 30vh;
+    resize: none;
+}
+
+/* Main Content */
+
+#mainContent {
+    margin: 15px 10px 0 10px;
+}
+
+#mainContent h6 {
+    font-family: "Open Sans";
+    font-weight: 600;
+    user-select: none;
+    color: rgb(164, 164, 164);
+    margin: 4px 0 4px 0;
+}
+
+/* Assignment */
+
+.assignment-head {
+    width: 100%;
+    background-color: var(--main-color);
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    border-radius: 6px;
+    z-index: 2;
+    position: relative;
+}
+
+.assignment-head div {
+    display: inline-block;
+}
+
+.assignment-head p {
+    font-family: "Open Sans";
+    color: var(--background-color);
+    user-select: none;
+    margin: 0;
+}
+
+.assignment-head p:hover {
+    text-decoration: line-through !important;
+    cursor: pointer;
+}
+
+.assignment-head p span {
+    font-size: var(--details-size);
+    font-weight: 300;
+    display: block;
+}
+
+.assignment-head .title {
+    font-size: var(--title-size);
+    font-weight: 600;
+    max-width: 400px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+}
+
+.assignment-head .title:hover {
+    white-space: wrap;
+}
+
+.assignment-head .title:hover span {
+    max-width: 100%;
+}
+
+.assignment-head button {
+    margin-left: 5px;
+}
+
+.assignment-head button:hover {
+    background-color: #cdcdcd;
+}
+
+.assignment-head button:active {
+    background-color: #b3b3b3;
+}
+
+.assignment-highlight {
+    /* position: absolute;
+    top: -15px;
+    left: 0;
+    padding: 5px; */
+    z-index: -1;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    letter-spacing: 1.5px;
+    /* max-width: 50%; */
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    text-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 5px 5px 0 0;
+}
+
+.assignment-body {
+    background-color: #eaeaea;
+    padding: 6px;
+    display: none;
+    overflow: auto;
+    border-radius: 0 0 6px 6px;
+    z-index: -1;
+    max-height: 200px;
+}
+
+.assignment-body::-webkit-scrollbar {
+    width: 5px;               /* width of the entire scrollbar */
+    height: 5px;
+}
+
+.assignment-body::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+}
+
+.assignment-body::-webkit-scrollbar-thumb {
+    background-color: gray;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
+.assignment-body p {
+    margin: 0;
+    font-family: "Open Sans";
+    font-size: var(--content-size);
+    font-weight: 300;
+    user-select: none;
+    /*animation: fade 0.5s forwards;*/
+}
+
+.assignment-body button {
+    all: unset;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0.5;
+    margin-top: 10px;
+    font-size: 12px;
+    float: right;
+}
+
+.assignment-body button:hover {
+    text-decoration: underline;
+}
+
+#black {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    cursor: pointer;
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s forwards;
+}
+
+/* Extras */
+
+#tip {
+    font-family: "Open Sans";
+    font-size: var(--title-size);
+    color: black;
+    text-align: center;
+    user-select: none;
+    margin: 10px;
+    animation: fadeIn 0.3s forwards linear;
+}
+
+#completedHeading input[type=submit] {
+    all: unset;
+    cursor: pointer;
+    float: right;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#completedHeading input[type=submit]:hover {
+    background-color: rgba(164, 164, 164, 0.5);
+    color: rgba(109, 109, 109)
+}
+
+#completedHeading input[type=submit]:active {
+    background-color: rgba(164, 164, 164, 0.7);
+}

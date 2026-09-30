@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="../icon.ico">
+    </head>
+    <body>
+        <div id="black"></div>
+        <nav>
+            <p>Homework App</p>
+            <div>
+                <button id="minimizeButton" class="button-svg"><img src="img/minimize.svg"></button>
+                <button id="resizeButton" class="button-svg"><img src="img/maximize.svg"></button>
+                <button id="closeButton" class="button-svg"><img src="img/close.svg"></button>
+            </div>
+        </nav>
+
+        <p id="tip">To add more assignments, press the '+' in the bottom right-hand corner.</p>
+
+        <div id="mainContent">
+            <h6 id="dueHeading">DUE:</h6>
+            <div id="dueStorage"></div>
+            <h6 id="upcomingHeading">UPCOMING:</h6>
+            <div id="upcomingStorage"></div>
+            <h6 id="completedHeading">COMPLETED: <input type="submit" value="CLEAR ALL" id="clear"></h6>
+            <div id="completedStorage"></div>
+        </div>
+
+        <button id="newItemButton" class="button-svg"><img id="arrow" src="img/arrow.svg"><img src="img/plus.svg"></button>
+
+        <div id="newItem">
+            <input type="text" placeholder="[Subject] Homework Title" class="text" id="itemTitle">
+            <textarea placeholder="Add assignment details.." class="text" id="itemDesc"></textarea>
+            <input type="date" id="itemDate">
+            <input type="time" value="23:59" id="itemTime">
+            <div id="colorHolder" class="color" style="text-align: center;">
+                <div class="color-grid" id="colorGrid">
+                    <div class="color"></div>
+                    <div class="color" style="background-color: #10B981;"></div>
+                    <div class="color" style="background-color: #F87171;"></div>
+                    <div class="color" style="background-color: #625982;"></div>
+                    <div class="color" style="background-color: #A78BFA;"></div>
+                    <div class="color" style="background-color: #FB923C;"></div>
+                    <div class="color" style="background-color: #06B6D4;"></div>
+                    <div class="color" style="background-color: #EC4899;"></div>
+                    <div class="color" style="background-color: #797979;"></div>
+                </div>
+            </div>
+            <input type="submit" value="Create" id="createButton">
+        </div>
+
+        <script src="script.js" type="module"></script>
+    </body>
+</html>
